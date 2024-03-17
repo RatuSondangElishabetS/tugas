@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sistem monitoring dan pemeliharaan prediktif jaringan listrik</title>
+<style>
+body {
+ font-family: Arial, sans-serif;
+}
+
+.header {
+ text-align: center;
+ padding: 50px;
+ background-color: #357a38;
+ color: white;
+}
+
+.nav {
+ display: flex;
+ justify-content: space-around;
+ padding: 30px;
+ background-color: #4CAF50; 
+}
+
+.nav a {
+ text-decoration: none;
+ color: white;
+}
+
+.nav a:hover {
+ color: #333;
+}
+
+.Nama {
+ color: orange;
+}
+
+.Peringatan {
+ color: red;
+}
+
+.Prediksi {
+ color: navy;
+}
+
+.Perbaikan {
+ color: green;
+}
+
+.track-record {
+ display: flex;
+ justify-content: space-around;
+ padding: 30px;
+ background-color: #f2f2f2;
+}
+
+.track-record p {
+ margin: 0;
+}
+
+.track-record .step {
+ flex: 1;
+ text-align: center;
+}
+
+.track-record .step.nama {
+ color: orange;
+}
+
+.track-record .step.peringatan {
+ color: red;
+}
+
+.track-record .step.prediksi {
+ color: navy;
+}
+
+.track-record .step.perbaikan {
+ color: green;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+ <h1>Sistem monitoring dan pemeliharaan prediktif jaringan listrik</h1>
+</div>
+
+<div class="nav">
+ <a href="fitur deteksi.html">Sistem Deteksi</a>
+ <a href="riwayat data.html">Data Historis Hasil Submit</a>
+</div>
+
+<!-- Ini adalah bagian menampilkan database yang mengalami kerusakan -->
+<div class="track-record">
+ <div class="step nama">
+  <p>Nama</p>
+  <p>Panel BOX A</p>
+  <p>Panel BOX C</p>
+ </div>
+<div class="step peringatan">
+  <p>Peringatan</p>
+  <p>Bahaya</p>
+  <p>Level 2 : Terdapat gangguan</p>
+ </div>
+ <div class="step progres">
+  <p>Progres</p>
+  <p>Menunggu tim kelapangan</p>
+  <p>Pemantauan serius</p>
+ </div>
+  <div class="step prediksi">
+  <p>Prediksi</p>
+  <p>-</p>
+  <p>Perbaikan komponen minggu ke 3</p>
+ </div>
+ <div class="step perbaikan">
+  <p>Perbaikan</p>
+  <p>Tanggal Perbaikan</p>
+  <p>Tanggal Perbaikan</p>
+ </div>
+</div>
+
+</body>
+</html>

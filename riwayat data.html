@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Historis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 30px;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        img {
+            max-width: 100px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <h2>Data Historis</h2>
+    <input type="text" id="search" placeholder="Cari data..">
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nama Instalasi</th>
+                <th>Tanggal Pengecekan</th>
+                <th>Gambar Asli</th>
+                <th>Gambar FLIR</th>
+                <th>Gambar Hasil Deteksi</th>
+                <th>Status Kondisi</th>
+                <th>Keterangan</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+            <tr>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td><img src="{{ row[3] }}" alt="Gambar Asli"></td>
+                <td><img src="{{ row[4] }}" alt="Gambar FLIR"></td>
+                <td><img src="{{ row[5] }}" alt="Gambar Hasil Deteksi"></td>
+                <td>{{ row[6] }}</td>
+                <td>{{ row[7] }}</td>
+    </table>
+
+    <script>
+        document.getElementById("search").addEventListener("keyup", function(event) {
+            let filter = event.target.value.toUpperCase();
+            let rows = document.getElementsByTagName("tr");
+            for (let i = 1; i < rows.length; i++) {
+                let cells = rows[i].getElementsByTagName("td");
+                let match = false;
+                for (let j = 0; j < cells.length - 1; j++) {
+                    if (cells[j].textContent.toUpperCase().indexOf(filter) > -1) {
+                        match = true;
+                        break;
+                    }
+                }
+                if (match) {
+                    rows[i].style.display = "";
+                } else {
+                    rows[i].style.display = "none";
+                }
+            }
+        });
+    </script>
+</body>
+</html>

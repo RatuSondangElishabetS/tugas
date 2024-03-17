@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deteksi Kerusakan Kabel Listrik</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            margin-top: 20px;
+        }
+        input[type="text"],
+        input[type="date"],
+        input[type="file"],
+        input[type="button"],
+        input[type="submit"] {
+            display: block;
+            width: calc(100% - 16px);
+            margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="button"],
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="button"]:hover,
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        #image_details {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Deteksi Kerusakan Kabel Listrik</h1>
+        <form id="uploadForm" enctype="multipart/form-data">
+            <label for="property_name">Nama Instalasi:</label>
+            <input type="text" id="property_name" name="property_name" required>
+            <label for="check_in_date">Tanggal Pengecekan:</label>
+            <input type="date" id="check_in_date" name="check_in_date" required>
+            <label for="property_image">Gambar Asli:</label>
+            <input type="file" id="property_image" name="property_image" accept="image/jpeg, image/png, image/bmp" required>
+            <label for="property_image2">Gambar FLIR:</label>
+            <input type="file" id="property_image2" name="property_image2" accept="image/jpeg, image/png, image/bmp" required>
+            <input type="button" value="Deteksi Gambar" onclick="detectImage()">
+            <div id="image_details"></div>
+            <input type="submit" value="Submit Data" name="submit_data" id="submit_data" disabled>
+        </form>
+    </div>
+
+    <script>
+        function detectImage() {
+            var formData = new FormData(document.getElementById('uploadForm'));
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/detect-image', true);
+
+            xhr.onload = function() {
+                if (this.status == 200) {
+                    var response = JSON.parse(this.response);
+                    var imageDetails = document.getElementById('image_details');
+                    imageDetails.innerHTML = 'Gambar Terdeteksi: <br> ' + response.detected_image;
+                    document.getElementById('submit_data').disabled = false;
+                }
+            }
+
+            xhr.send(formData);
+        }
+    </script>
+</body>
+</html>
